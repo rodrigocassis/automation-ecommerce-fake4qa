@@ -1,0 +1,23 @@
+tag="$tag"
+
+node("master"){   
+    
+
+    
+    stage('show info') {
+
+                echo $tag
+    }
+
+       stage('execute test') {
+
+                                  //bat( script: "mvn test -Dsuite.default=LayoutGenericSuite.xml \"-Dsuite.name=${nameSuite}\" \"-DtestCase.file=${planilha}\" \"-Dsuite.applicationServer=${environment}\" \"-Dsuite.hubURL=\" \"-DtestCase.tag=TAXBR;LAYOUT\" \"-Dserver.os=${os}\" \"-Dsuite.platform=${platform}\" \"-Dsuite.username=${username}\" \"-Dsuite.pwd=${pwd}\" \"-Dsuite.sftpUrl=${sftpUrl}\" \"-Dsuite.sftpPort=${sftpPort}\"  \"-Dsuite.sftpUser=${sftpUser}\" \"-Dsuite.sftpPwd=${sftpPwd}\" \"-Dsuite.individualTest=${individualTest}\" \"-Drp.tags=${tag} \"")                                    
+
+
+                echo $tag
+    }
+           
+    
+}
+
+
