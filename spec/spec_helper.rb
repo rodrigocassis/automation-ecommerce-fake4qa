@@ -25,6 +25,6 @@ RSpec.configure do |config|
 end
 
 Capybara.configure do |config|
-  config.default_driver = :selenium_chrome_headless
-  config.default_max_wait_time = 20
+  config.default_driver = :selenium_chrome
+  config.default_max_wait_time = 30
 end
