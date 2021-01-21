@@ -1,18 +1,21 @@
-require_relative "product"
-
 class ShoppingPage
   include Capybara::DSL
 
   def add_to_cart(product)
-    name = product.get_name
-    puts "adding product to cart " + name.to_s
+    @cart_Page = CartPage.new
 
+    name = product.name
     product_infos = find(".produto-footer", text: name.to_s)
     product_name = product_infos.find(".produto-nome")
     add_to_cart = product_infos.find(".text-center")
     sleep 1
     add_to_cart.click
 
-    puts "product " + name.to_s + " added to cart."
+    if product.quantity > 1
+      click_add = product.quantity - 1
+      click_add.times do
+        @cart_Page.add(product)
+      end
+    end
   end
 end

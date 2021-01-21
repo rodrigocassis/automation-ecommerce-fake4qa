@@ -1,6 +1,13 @@
 require "capybara"
 require "capybara/rspec"
 require "selenium-webdriver"
+require_relative "objects/product"
+require_relative "objects/cart"
+require_relative "objects/client"
+require_relative "pages/shopping_page"
+require_relative "pages/cart_page"
+require_relative "pages/register_page"
+require_relative "pages/oder_page"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

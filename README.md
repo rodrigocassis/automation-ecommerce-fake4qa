@@ -12,13 +12,12 @@ The intention is not to have a large number of test cases, because the objective
 ## Run Specs
     rspec                            # to run all specs, with default driver and env
     rspec -t my_tag:my_value         # to run specs filtered by {:my_tag=>my_value}
-    rspec -t ~slow                   # to run specs without tag {:slow=>true}
+    rspec -t ~shopping               # to run specs without tag {:slow=>true}
 
 ### Test Cases
 
-
 #### TestName
-	BuySingleProduct
+	buy_single_product
 
 #### TestCaseDescription
 	Buy a single product until order finish
@@ -33,7 +32,7 @@ The intention is not to have a large number of test cases, because the objective
 
 
 #### TestName
-	BuyTwoProducts
+	buy_two_products
 
 #### TestCaseDescription
 	Buy two products until order finish
@@ -51,7 +50,7 @@ The intention is not to have a large number of test cases, because the objective
 
 
 #### TestName
-	BuyProductChangingQuantity
+	buy_product_changing_quantity
 
 #### TestCaseDescription
 	Buy two of the same product until order finish
@@ -68,7 +67,7 @@ The intention is not to have a large number of test cases, because the objective
 
 
 #### TestName
-	BuyProductDeleteFromCart
+	buy_product_delete_from_cart
 
 #### TestCaseDescription
 	Buy a single product and delete on the cart page
