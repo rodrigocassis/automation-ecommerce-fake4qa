@@ -1,6 +1,5 @@
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import io.restassured.response.Response;
 
 import java.io.File;
 
@@ -28,13 +27,11 @@ public class ExemploChamadaAPIComCertificadoEProxy {
         RestAssured.baseURI = apiUrl;
         RestAssured.useRelaxedHTTPSValidation(); // Use se o certificado não for validado por uma CA confiável
 
-        // Configuração do certificado e chave privada
+        // Faz a chamada usando o certificado e a chave privada
         RequestSpecification request = RestAssured.given().relaxedHTTPSValidation()
-                .config(RestAssured.config()
-                        .sslConfig()
-                        .keyStore(chavePath, "")
-                        .and()
-                        .trustStore(certificadoPath))
+                .keyStore(chavePath, "")
+                .and()
+                .trustStore(certificadoPath)
                 .proxy(proxyHost, proxyPort) // Configuração do proxy
                 .proxyUser(proxyUser) // Configuração do usuário do proxy
                 .proxyPassword(proxyPassword); // Configuração da senha do proxy
@@ -43,12 +40,10 @@ public class ExemploChamadaAPIComCertificadoEProxy {
         String parametroId = "3423423455";
 
         // Faz a chamada POST
-        Response response = request
-                .formParam("meu_id", parametroId)
-                .post();
-
-        // Exibe o status code e a resposta
-        System.out.println("Status Code: " + response.getStatusCode());
-        System.out.println("Resposta: " + response.getBody().asString());
+        request
+            .formParam("meu_id", parametroId)
+            .post()
+            .then()
+            .statusCode(200);
     }
 }
