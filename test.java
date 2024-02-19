@@ -23,12 +23,15 @@ public class ExemploRestAssuredComCertificado {
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
             keyStore.load(new FileInputStream(certificadoPath), null);
 
-            // Configura o RestAssured para usar o certificado e chave privada
+            // Configuração do KeyManager
             KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
             keyManagerFactory.init(keyStore, null);
 
-            RestAssured.config = RestAssured.config().sslConfig().keyStore(keyStore);
-            RestAssured.config = RestAssured.config().sslConfig().keyManager(keyManagerFactory);
+            // Configuração do SSLConfig
+            io.restassured.config.SSLConfig sslConfig = new io.restassured.config.SSLConfig().with().keyStore(keyStore);
+
+            // Configura o RestAssured para usar o certificado e chave privada
+            RestAssured.config = RestAssured.config().sslConfig(sslConfig).sslConfig().keyManager(keyManagerFactory);
 
             // Faz a chamada usando o certificado configurado
             RequestSpecification request = RestAssured.given();
