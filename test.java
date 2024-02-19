@@ -20,6 +20,10 @@ public class ExemploChamadaAPIComCertificadoEProxy {
         String proxyHost = "seu_proxy_host";
         int proxyPort = 8080;
 
+        // Configuração do usuário e senha do proxy (se necessário)
+        String proxyUser = "seu_usuario";
+        String proxyPassword = "sua_senha";
+
         // Configuração do RestAssured
         RestAssured.baseURI = apiUrl;
         RestAssured.useRelaxedHTTPSValidation(); // Use se o certificado não for validado por uma CA confiável
@@ -31,7 +35,9 @@ public class ExemploChamadaAPIComCertificadoEProxy {
                         .keyStore(chavePath, "")
                         .and()
                         .trustStore(certificadoPath))
-                .proxy(proxyHost, proxyPort); // Configuração do proxy
+                .proxy(proxyHost, proxyPort) // Configuração do proxy
+                .proxyUser(proxyUser) // Configuração do usuário do proxy
+                .proxyPassword(proxyPassword); // Configuração da senha do proxy
 
         // Parâmetros do formulário
         String parametroId = "3423423455";
